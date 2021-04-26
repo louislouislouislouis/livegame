@@ -1,25 +1,21 @@
-import React, {
-  useEffect,
-  useState,
-  useRef,
-  useCallback,
-  useContext,
-} from "react";
+import React, { useEffect, useState, useContext } from "react";
 
 import { useHttpClient } from "../../hooks/http-hook";
 import { PlayerContext } from "../../context/playercontext";
 
 import "./livent.css";
 const Live = () => {
+  //CUSTOM HTTP HOOK
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
+
+  //GET PLAYER CONTEXT
   const playercontext = useContext(PlayerContext);
+
   //POSSIBLY NEXT PLAYERID
   const [name, setname] = useState("");
+
   //FEEDBACKFOR PLAYERID
   const [retour, setretour] = useState("Veuillez choisir un PlayerId");
-
-  //SOURCELIVE EXIST OVER RENDER
-  const evtSrclive = useRef(null);
 
   //VERIFY FEEDBACK FOR NAME EVERY TIME CHANGE
   useEffect(() => {
@@ -29,7 +25,6 @@ const Live = () => {
           const rep = await sendRequest(
             `${process.env.REACT_APP_BACKENDURL}/api/live/${name}/isExisting`
           );
-
           if (rep.msg === "Ok") {
             setretour("Ce nom est op");
           }
@@ -46,23 +41,8 @@ const Live = () => {
   //CREATE A PAYERID
   const submithandler = (e) => {
     e.preventDefault();
-    if (!evtSrclive.current) {
-      evtSrclive.current = new EventSource(
-        `${process.env.REACT_APP_BACKENDURL}/api/live/${name}`
-      );
-      evtSrclive.current.addEventListener("count", (event) => {
-        console.log(event.data);
-      });
-      playercontext.login(name);
-    } else {
-      evtSrclive.current.close();
-      evtSrclive.current = new EventSource(
-        `${process.env.REACT_APP_BACKENDURL}/api/live/${name}`
-      );
-      evtSrclive.current.addEventListener("count", (event) => {
-        console.log(event.data);
-      });
-    }
+    console.log(name);
+    playercontext.login(name);
   };
 
   //CHANGE NAME VALUE ON CHANGE

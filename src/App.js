@@ -3,13 +3,13 @@ import React from "react";
 import Live from "./Component/ConnectHome/livent";
 import Headers from "./Component/Shared/Header/Headers";
 
-import { useAuth } from "./hooks/login-hook";
+import { usePlayer } from "./hooks/login-hook";
 import { PlayerContext } from "./context/playercontext";
 
 import "./App.css";
 
 function App() {
-  const { login, logout, PlayerId } = useAuth();
+  const { login, logout, PlayerId } = usePlayer();
   console.log(PlayerId);
   return (
     <React.Fragment>
@@ -22,7 +22,14 @@ function App() {
         }}
       >
         <Headers />
-        <div className="monapp">{!PlayerId && <Live />}</div>
+        <div className="monapp">
+          {
+            <React.Fragment>
+              {!PlayerId && <Live />}{" "}
+              {PlayerId && <p>{`Bienvenue ! ${PlayerId}`}</p>}
+            </React.Fragment>
+          }
+        </div>
       </PlayerContext.Provider>
     </React.Fragment>
   );
