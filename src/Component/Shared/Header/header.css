@@ -1,0 +1,22 @@
+.headermain {
+  background-color: red;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+}
+.headermain .logo {
+  margin: 5px;
+}
+img {
+  height: 100%;
+}
+.headerList {
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+.headerList li {
+  margin: 0 20px 0 20px;
+  display: flex;
+  align-items: center;
+}

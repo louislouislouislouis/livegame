@@ -27,6 +27,14 @@
 .App-link {
   color: #61dafb;
 }
+.monapp {
+  height: calc(100vh - 80px);
+  background-color: blueviolet;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+}
 
 @keyframes App-logo-spin {
   from {

@@ -6,11 +6,13 @@ import React, {
   useContext,
 } from "react";
 
-import { useHttpClient } from "./hooks/http-hook";
+import { useHttpClient } from "../../hooks/http-hook";
+import { PlayerContext } from "../../context/playercontext";
 
+import "./livent.css";
 const Live = () => {
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
-
+  const playercontext = useContext(PlayerContext);
   //POSSIBLY NEXT PLAYERID
   const [name, setname] = useState("");
   //FEEDBACKFOR PLAYERID
@@ -51,7 +53,7 @@ const Live = () => {
       evtSrclive.current.addEventListener("count", (event) => {
         console.log(event.data);
       });
-      console.log(`${process.env.REACT_APP_BACKENDURL}/api/live/${name}`);
+      playercontext.login(name);
     } else {
       evtSrclive.current.close();
       evtSrclive.current = new EventSource(
@@ -70,12 +72,15 @@ const Live = () => {
 
   return (
     <React.Fragment>
-      <form onSubmit={submithandler}>
-        <input value={name} onChange={changeHandler} />
-        <button type="submit"> SEND</button>
-      </form>
-      <p>{name}</p>
-      <p>{retour}</p>
+      <div className="sectionplayer">
+        <form onSubmit={submithandler}>
+          <input value={name} onChange={changeHandler} />
+          <button type="submit"> SEND</button>
+        </form>
+        <div className="retour">
+          <p>{retour}</p>
+        </div>
+      </div>
     </React.Fragment>
   );
 };
