@@ -1,9 +1,11 @@
 import { createContext } from "react";
 
 export const PlayerContext = createContext({
-  isLoggedIn: false,
-  userId: null,
-  token: null,
+  isPlayerIn: false,
+  PlayerId: null,
+  PartyId: null,
   login: () => {},
   logout: () => {},
+  setParty: () => {},
+  removeParty: () => {},
 });
