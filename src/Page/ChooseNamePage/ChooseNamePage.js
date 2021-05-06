@@ -3,8 +3,8 @@ import React, { useEffect, useState, useContext } from "react";
 import { useHttpClient } from "../../hooks/http-hook";
 import { PlayerContext } from "../../context/playercontext";
 
-import "./livent.css";
-const Live = () => {
+import "./ChooseNamePage.css";
+const ChooseNamePage = () => {
   //CUSTOM HTTP HOOK
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
@@ -17,6 +17,9 @@ const Live = () => {
   //FEEDBACKFOR PLAYERID
   const [retour, setretour] = useState("Veuillez choisir un PlayerId");
 
+  //FOCUS INPUT
+  const [focus, setfocus] = useState(false);
+
   //VERIFY FEEDBACK FOR NAME EVERY TIME CHANGE
   useEffect(() => {
     const fonction = async () => {
@@ -26,13 +29,13 @@ const Live = () => {
             `${process.env.REACT_APP_BACKENDURL}/api/live/${name}/isExisting`
           );
           if (rep.msg === "Ok") {
-            setretour("Ce nom est op");
+            setretour("This username is available");
           }
         } catch (err) {
-          setretour("Ce nom n'est pas op");
+          setretour("Sorry this username is not available");
         }
       } else {
-        setretour("Veuillez choisir un PlayerId");
+        setretour("");
       }
     };
     fonction();
@@ -50,19 +53,53 @@ const Live = () => {
     setname(e.target.value);
   };
 
+  const settozero = () => {
+    setfocus(true);
+  };
+
+  const backtostartingpoint = () => {
+    console.log("ff");
+    if (name === "") {
+      setfocus(false);
+    }
+  };
+
   return (
     <React.Fragment>
       <div className="sectionplayer">
+        <div className="title">
+          <h1>Start by Choosing your Username</h1>
+        </div>
+
         <form onSubmit={submithandler}>
-          <input value={name} onChange={changeHandler} />
+          <input
+            className={name ? "" : "tochange"}
+            value={focus ? name : "Your Username here ..."}
+            onChange={changeHandler}
+            onFocus={settozero}
+            onBlur={backtostartingpoint}
+          />
+          <div
+            className={`retour ${
+              retour === ""
+                ? "none"
+                : retour === "This username is available"
+                ? "good"
+                : "bad"
+            }`}
+          >
+            {retour === "Sorry this username is not available" && (
+              <div className={`exclamationmark ${retour === "" ? "none" : ""}`}>
+                !
+              </div>
+            )}
+            <p>{retour}</p>
+          </div>
           <button type="submit"> SEND</button>
         </form>
-        <div className="retour">
-          <p>{retour}</p>
-        </div>
       </div>
     </React.Fragment>
   );
 };
 
-export default Live;
+export default ChooseNamePage;

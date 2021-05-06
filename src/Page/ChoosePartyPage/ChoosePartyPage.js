@@ -2,9 +2,9 @@ import React, { useState, useEffect, useContext } from "react";
 import { useHttpClient } from "../../hooks/http-hook";
 import { PlayerContext } from "../../context/playercontext";
 
-import "./partyCreator.css";
+import "./ChoosePartyPage.css";
 
-const PartyCreator = () => {
+const ChoosePartyPage = () => {
   //CUSTOM HTTP HOOK
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
@@ -74,4 +74,4 @@ const PartyCreator = () => {
   );
 };
 
-export default PartyCreator;
+export default ChoosePartyPage;

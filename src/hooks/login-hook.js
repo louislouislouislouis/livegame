@@ -113,5 +113,6 @@ export const usePlayer = () => {
       login(storedData.PlayerId);
     }
   }, [login, autoverifypartycurrent]);
+  
   return { login, logout, PlayerId, PartyId, setParty, removeParty };
 };

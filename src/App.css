@@ -28,12 +28,11 @@
   color: #61dafb;
 }
 .monapp {
-  height: calc(100vh - 80px);
-  background-color: blueviolet;
+  height: 100vh;
+  background: linear-gradient(180deg, #8dffcd 0%, #bcffdb 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 20px;
 }
 
 @keyframes App-logo-spin {

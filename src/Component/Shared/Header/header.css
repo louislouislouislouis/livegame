@@ -3,6 +3,8 @@
   height: 80px;
   display: flex;
   justify-content: space-between;
+  position: fixed;
+  width: 100vw;
 }
 .headermain .logo {
   margin: 5px;

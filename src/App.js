@@ -1,13 +1,13 @@
 import React from "react";
 
-import Live from "./Component/ConnectHome/livent";
+import ChooseNamePage from "./Page/ChooseNamePage/ChooseNamePage";
 import Headers from "./Component/Shared/Header/Headers";
 
 import { usePlayer } from "./hooks/login-hook";
 import { PlayerContext } from "./context/playercontext";
 
 import "./App.css";
-import PartyCreator from "./Component/Parties/PartyCreator";
+import ChoosePartyPage from "./Page/ChoosePartyPage/ChoosePartyPage";
 
 function App() {
   const {
@@ -35,9 +35,9 @@ function App() {
         <div className="monapp">
           {
             <React.Fragment>
-              {!PlayerId && <Live />}{" "}
+              {!PlayerId && <ChooseNamePage />}
               {PlayerId && <p>{`Bienvenue ! ${PlayerId}`}</p>}
-              {PlayerId && !PartyId && <PartyCreator />}
+              {PlayerId && !PartyId && <ChoosePartyPage />}
               {PartyId && <p>{`Tu joue dans la partie ! ${PartyId}`}</p>}
             </React.Fragment>
           }
