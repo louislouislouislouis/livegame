@@ -1,15 +1,18 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useHttpClient } from "../../hooks/http-hook";
 import { PlayerContext } from "../../context/playercontext";
-
+import Crox from "../../Component/Crox/crox";
 import "./ChoosePartyPage.css";
 
 const ChoosePartyPage = () => {
   //CUSTOM HTTP HOOK
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
+  //AUTHCONTEXT
   const playercontext = useContext(PlayerContext);
 
+  //MODE
+  const [mode, setmode] = useState("home");
   //NAME OF THE PARTY
   const [partyName, setpartyName] = useState("");
   //NAME OF THE RETOUR
@@ -61,8 +64,37 @@ const ChoosePartyPage = () => {
       }
     } catch (err) {}
   };
+
+  const changemodeHandler = (e, mode) => {
+    e.stopPropagation();
+    console.log("eeee");
+    setmode(mode);
+  };
+  console.log(mode);
   return (
-    <div className="partyCreatordiv">
+    <div className="pagecreateparty">
+      <div
+        className={`cardparty ${mode === "createPartyMode" ? "active" : ""}`}
+        onClick={(e) => changemodeHandler(e, "createPartyMode")}
+      >
+        <h1>Create a Party</h1>
+        <Crox
+          vision={`${
+            mode === "createPartyMode" ? "activecrox" : "inactivecrox"
+          }`}
+          onclickaction={(e) => changemodeHandler(e, "home")}
+        />
+      </div>
+      <div
+        className={`ndcard ${mode === "joinPartyMode" ? "activescd" : ""}`}
+        onClick={(e) => changemodeHandler(e, "joinPartyMode")}
+      >
+        <h1>Join A Party</h1>
+        <Crox
+          vision={`${mode === "joinPartyMode" ? "activecrox" : "inactivecrox"}`}
+          onclickaction={(e) => changemodeHandler(e, "home")}
+        />
+      </div>
       <form onSubmit={submithandler}>
         <input value={partyName} onChange={changeHandler} />
         <button type="submit"> SEND</button>

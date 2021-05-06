@@ -1,9 +1,87 @@
-.partyCreatordiv {
-  background-color: darkgreen;
-  max-width: 1000px;
-  width: 80%;
+.pagecreateparty {
+  height: 100vh;
+  position: relative;
+  top: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
+}
+.pagecreateparty h1 {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 36px;
+  /* identical to box height */
+  letter-spacing: -0.03em;
+  margin-top: 67px;
+  color: #000000;
+}
+.pagecreateparty-enter {
+  transform: translateY(+10rem);
+  opacity: 0;
+}
+.pagecreateparty-enter-active {
+  transform: translateY(0);
+  opacity: 1;
+  transition: all 2000ms;
+}
+
+.pagecreateparty-exit {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.pagecreateparty-exit-active {
+  transform: translateY(10rem);
+  opacity: 0;
+  transition: all 2000ms;
+}
+.cardparty {
+  background: #bee6ce;
+  box-shadow: 0px 100px 80px rgba(0, 0, 0, 0.07),
+    0px 41.7776px 33.4221px rgba(0, 0, 0, 0.0503198),
+    0px 22.3363px 17.869px rgba(0, 0, 0, 0.0417275),
+    0px 12.5216px 10.0172px rgba(0, 0, 0, 0.035),
+    0px 6.6501px 5.32008px rgba(0, 0, 0, 0.0282725),
+    0px 2.76726px 2.21381px rgba(0, 0, 0, 0.0196802);
+  border-radius: 33px;
+  height: 170px;
+  display: flex;
+
+  justify-content: center;
+  position: absolute;
+  width: 303px;
+  top: 148px;
+  transition: all 1s;
+}
+.ndcard {
+  box-shadow: 0px 100px 80px rgba(0, 0, 0, 0.07),
+    0px 41.7776px 33.4221px rgba(0, 0, 0, 0.0503198),
+    0px 22.3363px 17.869px rgba(0, 0, 0, 0.0417275),
+    0px 12.5216px 10.0172px rgba(0, 0, 0, 0.035),
+    0px 6.6501px 5.32008px rgba(0, 0, 0, 0.0282725),
+    0px 2.76726px 2.21381px rgba(0, 0, 0, 0.0196802);
+  border-radius: 33px;
+  height: 170px;
+  display: flex;
+
+  justify-content: center;
+  background: #68d89b;
+  position: absolute;
+  width: 303px;
+  top: 480px;
+  transition: all 1s;
+}
+.active {
+  height: 502px;
+  z-index: 3;
+}
+.inactive {
+  display: none;
+}
+.activescd {
+  height: 502px;
+  z-index: 3;
+  transform: translateY(-332px);
 }

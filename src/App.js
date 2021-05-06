@@ -2,6 +2,7 @@ import React from "react";
 
 import ChooseNamePage from "./Page/ChooseNamePage/ChooseNamePage";
 import Headers from "./Component/Shared/Header/Headers";
+import { CSSTransition } from "react-transition-group";
 
 import { usePlayer } from "./hooks/login-hook";
 import { PlayerContext } from "./context/playercontext";
@@ -35,9 +36,26 @@ function App() {
         <div className="monapp">
           {
             <React.Fragment>
-              {!PlayerId && <ChooseNamePage />}
+              <CSSTransition
+                in={!PlayerId}
+                mountOnEnter
+                unmountOnExit
+                timeout={2000}
+                classNames="pagecreateparty"
+              >
+                <ChooseNamePage />
+              </CSSTransition>
+              <CSSTransition
+                in={!!PlayerId}
+                mountOnEnter
+                unmountOnExit
+                timeout={2000}
+                classNames="pagecreateparty"
+              >
+                <ChoosePartyPage />
+              </CSSTransition>
               {PlayerId && <p>{`Bienvenue ! ${PlayerId}`}</p>}
-              {PlayerId && !PartyId && <ChoosePartyPage />}
+
               {PartyId && <p>{`Tu joue dans la partie ! ${PartyId}`}</p>}
             </React.Fragment>
           }

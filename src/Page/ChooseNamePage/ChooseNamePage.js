@@ -95,7 +95,12 @@ const ChooseNamePage = () => {
             )}
             <p>{retour}</p>
           </div>
-          <button type="submit"> SEND</button>
+          <button
+            disabled={retour !== "This username is available"}
+            type="submit"
+          >
+            NEXT
+          </button>
         </form>
       </div>
     </React.Fragment>
