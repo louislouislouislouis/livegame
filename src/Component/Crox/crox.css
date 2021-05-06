@@ -1,0 +1,41 @@
+.eclipse {
+  width: 34px;
+  height: 34px;
+  background-color: white;
+  border-radius: 30px;
+  position: absolute;
+  bottom: -71px;
+  z-index: 9;
+  transition: all 1s;
+  transition-delay: 1s;
+}
+
+.batonprem {
+  position: absolute;
+  height: 3.4px;
+  width: 19.04px;
+  left: 50%;
+  background: #ff6868;
+  border-radius: 10px;
+  transform: translateX(-50%) rotate(-135deg);
+  top: 45%;
+}
+
+.batomdeux {
+  position: absolute;
+  height: 3.4px;
+  width: 19.04px;
+  left: 50%;
+  background: #ff6868;
+  border-radius: 10px;
+  transform: translateX(-50%) rotate(-45deg);
+  top: 45%;
+}
+.activecrox {
+  transform: translateY(0) rotate(0);
+  opacity: 1;
+}
+.inactivecrox {
+  transform: translateY(75px) rotate(-90deg);
+  opacity: 0;
+}
