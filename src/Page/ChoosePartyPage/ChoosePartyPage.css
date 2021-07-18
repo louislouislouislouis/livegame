@@ -1,6 +1,5 @@
 .pagecreateparty {
   height: 100vh;
-  position: relative;
   top: 0;
   display: flex;
   flex-direction: column;
@@ -24,7 +23,8 @@
 .pagecreateparty-enter-active {
   transform: translateY(0);
   opacity: 1;
-  transition: all 2000ms;
+  transition: all 500ms;
+  transition-delay: 500ms;
 }
 
 .pagecreateparty-exit {
@@ -35,7 +35,7 @@
 .pagecreateparty-exit-active {
   transform: translateY(10rem);
   opacity: 0;
-  transition: all 2000ms;
+  transition: all 500ms;
 }
 .cardparty {
   background: #bee6ce;
@@ -47,13 +47,81 @@
     0px 2.76726px 2.21381px rgba(0, 0, 0, 0.0196802);
   border-radius: 33px;
   height: 170px;
+  align-items: center;
   display: flex;
-
-  justify-content: center;
+  z-index: 1;
+  flex-direction: column;
   position: absolute;
   width: 303px;
   top: 148px;
   transition: all 1s;
+}
+.cardparty form,
+.ndcard form {
+  position: absolute;
+  top: 184px;
+  width: 90%;
+}
+.cardparty input,
+.ndcard input {
+  width: 80%;
+  filter: none;
+}
+.cardparty button,
+.ndcard button {
+  margin: 20px;
+  position: relative;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 0px solid white;
+  background: #4f9d69;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 45px;
+  letter-spacing: -0.03em;
+  color: #000000;
+}
+
+.cardparty .retourcard,
+.ndcard .retourcard {
+  margin: 5px;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 18px;
+  display: flex;
+  align-items: center;
+  /* identical to box height */
+  letter-spacing: -0.03em;
+  height: 27px;
+}
+.appear {
+  animation: appear 0.5s ease-in-out 0s 1 normal;
+  opacity: 1;
+}
+.hidden {
+  opacity: 1;
+  animation: hide 0.5s ease-in-out 0s 1 normal both;
+}
+@keyframes hide {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 .ndcard {
   box-shadow: 0px 100px 80px rgba(0, 0, 0, 0.07),
@@ -65,17 +133,20 @@
   border-radius: 33px;
   height: 170px;
   display: flex;
-
-  justify-content: center;
+  z-index: 1;
+  align-items: center;
+  flex-direction: column;
   background: #68d89b;
   position: absolute;
   width: 303px;
   top: 480px;
   transition: all 1s;
+  overflow: hidden;
 }
 .active {
   height: 502px;
   z-index: 3;
+  overflow: visible;
 }
 .inactive {
   display: none;
@@ -84,4 +155,15 @@
   height: 502px;
   z-index: 3;
   transform: translateY(-332px);
+  overflow: visible;
+}
+.cardparty button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+  background: #ccc;
+}
+.ndcard button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+  background: #ccc;
 }

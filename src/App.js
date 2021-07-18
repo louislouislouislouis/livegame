@@ -9,27 +9,25 @@ import { PlayerContext } from "./context/playercontext";
 
 import "./App.css";
 import ChoosePartyPage from "./Page/ChoosePartyPage/ChoosePartyPage";
+import PartyManager from "./Page/PartyLanagerPage/PartyManager";
+import SetCartPage from "./Page/SetCartPage/SetCartPage";
 
 function App() {
-  const {
-    login,
-    logout,
-    PlayerId,
-    PartyId,
-    setParty,
-    removeParty,
-  } = usePlayer();
+  const { login, logout, PlayerId, PartyId, setParty, removeParty, PartyInfo } =
+    usePlayer();
+
   return (
     <React.Fragment>
       <PlayerContext.Provider
         value={{
-          isPlayerIn: !!PlayerId,
+          isPlayerIn: !!PlayerId.playerId,
           login: login,
           logout: logout,
-          PlayerId: PlayerId,
+          PlayerId: PlayerId.playerId,
           PartyId: PartyId,
           setParty: setParty,
           removeParty: removeParty,
+          PartyInfo: PartyInfo,
         }}
       >
         <Headers />
@@ -37,25 +35,64 @@ function App() {
           {
             <React.Fragment>
               <CSSTransition
-                in={!PlayerId}
+                in={!PlayerId.playerId}
                 mountOnEnter
                 unmountOnExit
-                timeout={2000}
-                classNames="pagecreateparty"
+                appear
+                timeout={{
+                  appear: 500,
+                  enter: 500,
+                  exit: 500,
+                }}
+                classNames="sectionplayer"
               >
                 <ChooseNamePage />
               </CSSTransition>
               <CSSTransition
-                in={!!PlayerId}
+                in={!!PlayerId.playerId && !PartyId}
                 mountOnEnter
                 unmountOnExit
-                timeout={2000}
+                timeout={{
+                  appear: 500,
+                  enter: 500,
+                  exit: 500,
+                }}
                 classNames="pagecreateparty"
               >
                 <ChoosePartyPage />
               </CSSTransition>
-              {PlayerId && <p>{`Bienvenue ! ${PlayerId}`}</p>}
-
+              <CSSTransition
+                in={
+                  !!PlayerId.playerId &&
+                  !!PartyId &&
+                  PartyInfo &&
+                  PartyInfo.status === "nonbegin"
+                }
+                mountOnEnter
+                unmountOnExit
+                timeout={{
+                  appear: 500,
+                  enter: 500,
+                  exit: 500,
+                }}
+                classNames="mainPartymanager"
+              >
+                <PartyManager />
+              </CSSTransition>
+              <CSSTransition
+                in={PartyInfo && PartyInfo.status === "begin"}
+                mountOnEnter
+                unmountOnExit
+                timeout={{
+                  appear: 500,
+                  enter: 500,
+                  exit: 0,
+                }}
+                classNames="setcartpaty"
+              >
+                <SetCartPage />
+              </CSSTransition>
+              {PlayerId && <p>{`Bienvenue ! ${PlayerId.playerId}`}</p>}
               {PartyId && <p>{`Tu joue dans la partie ! ${PartyId}`}</p>}
             </React.Fragment>
           }

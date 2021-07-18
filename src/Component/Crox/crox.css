@@ -7,7 +7,7 @@
   bottom: -71px;
   z-index: 9;
   transition: all 1s;
-  transition-delay: 1s;
+  transition-delay: 0s;
 }
 
 .batonprem {
@@ -38,4 +38,13 @@
 .inactivecrox {
   transform: translateY(75px) rotate(-90deg);
   opacity: 0;
+}
+.headerList .eclipse {
+  position: relative;
+  top: 30px;
+  transform: scale(2);
+}
+.headerList .batomdeux,
+.headerList .batonprem {
+  background: red;
 }

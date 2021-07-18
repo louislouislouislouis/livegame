@@ -61,6 +61,7 @@
   letter-spacing: -0.03em;
   height: 27px;
 }
+
 .good {
   color: rgba(60, 21, 24, 0.5);
 }
@@ -88,4 +89,53 @@
   line-height: 27px;
   /* identical to box height */
   letter-spacing: -0.03em;
+}
+.pagecreategame {
+  height: 100vh;
+  position: relative;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sectionplayer h1 {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 36px;
+  /* identical to box height */
+  letter-spacing: -0.03em;
+  margin-top: 67px;
+  color: #000000;
+}
+.sectionplayer-enter {
+  transform: translateY(+10rem);
+  opacity: 0;
+}
+.sectionplayer-enter-active {
+  transform: translateY(0);
+  opacity: 1;
+  transition: all 500ms;
+}
+
+.sectionplayer-exit {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.sectionplayer-appear {
+  opacity: 0;
+  transform: translateY(10rem);
+}
+.sectionplayer-appear-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 500ms;
+}
+.sectionplayer-exit-active {
+  transform: translateY(10rem);
+  opacity: 0;
+  transition: all 500ms;
 }
